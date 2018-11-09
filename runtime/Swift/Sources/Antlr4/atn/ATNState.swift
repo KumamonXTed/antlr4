@@ -160,12 +160,12 @@ public class ATNState: Hashable, CustomStringConvertible {
         for t in transitions {
             if t.target.stateNumber == e.target.stateNumber {
                 if let tLabel = t.labelIntervalSet(), let eLabel = e.labelIntervalSet(), tLabel == eLabel {
-                    print("Repeated transition upon \(eLabel) from \(stateNumber)->\(t.target.stateNumber)")
+//                    print("Repeated transition upon \(eLabel) from \(stateNumber)->\(t.target.stateNumber)")
                     alreadyPresent = true
                     break
                 }
                 else if t.isEpsilon() && e.isEpsilon() {
-                    print("Repeated epsilon transition from \(stateNumber)->\(t.target.stateNumber)")
+//                    print("Repeated epsilon transition from \(stateNumber)->\(t.target.stateNumber)")
                     alreadyPresent = true
                     break
                 }
