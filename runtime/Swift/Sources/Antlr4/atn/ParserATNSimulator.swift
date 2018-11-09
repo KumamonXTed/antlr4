@@ -1755,7 +1755,7 @@ open class ParserATNSimulator: ATNSimulator {
         }
 
         if debug {
-            print("config from pred transition=\(String(describing: c))")
+            print("config from pred transition=\(c?.description ?? "nil")")
         }
         return c
     }
@@ -1797,7 +1797,7 @@ open class ParserATNSimulator: ATNSimulator {
         }
 
         if debug {
-            print("config from pred transition=\(String(describing: c))")
+            print("config from pred transition=\(c?.description ?? "nil")")
         }
         return c
     }
@@ -1805,7 +1805,7 @@ open class ParserATNSimulator: ATNSimulator {
 
     final func ruleTransition(_ config: ATNConfig, _ t: RuleTransition) -> ATNConfig {
         if debug {
-            print("CALL rule \(getRuleName(t.target.ruleIndex!)), ctx=\(String(describing: config.context))")
+            print("CALL rule \(getRuleName(t.target.ruleIndex!)), ctx=\(config.context?.description ?? "nil")")
         }
 
         let returnState = t.followState
@@ -1962,7 +1962,7 @@ open class ParserATNSimulator: ATNSimulator {
                           _ to: DFAState?) -> DFAState? {
         var to = to
         if debug {
-            print("EDGE \(String(describing: from)) -> \(String(describing: to)) upon \(getTokenName(t))")
+            print("EDGE \(from?.description ?? "nil")) -> \(to?.description ?? "nil") upon \(getTokenName(t))")
         }
 
         if to == nil {
