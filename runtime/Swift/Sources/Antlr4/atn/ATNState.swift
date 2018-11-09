@@ -105,7 +105,7 @@ public class ATNState: Hashable, CustomStringConvertible {
     /// 
     /// Which ATN are we in?
     /// 
-    public final var atn: ATN? = nil
+    public final weak var atn: ATN? = nil
 
     public final var stateNumber: Int = INVALID_STATE_NUMBER
 
