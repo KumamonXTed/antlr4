@@ -106,6 +106,20 @@ matrix:
       stage: main-test
     - os: osx
       compiler: clang
+      osx_image: xcode9.4
+      env:
+        - TARGET=swift
+        - GROUP=RECURSION
+      stage: main-test
+    - os: osx
+      compiler: clang
+      osx_image: xcode10
+      env:
+        - TARGET=swift
+        - GROUP=RECURSION
+      stage: main-test
+    - os: osx
+      compiler: clang
       osx_image: xcode10.1
       env:
         - TARGET=swift
