@@ -85,18 +85,6 @@ matrix:
       stage: extended-test
     - os: osx
       compiler: clang
-      osx_image: xcode9.4
-      env:
-        - TARGET=cpp
-        - GROUP=RECURSION
-    - os: osx
-      compiler: clang
-      osx_image: xcode10
-      env:
-        - TARGET=cpp
-        - GROUP=RECURSION
-    - os: osx
-      compiler: clang
       osx_image: xcode10.1
       env:
         - TARGET=cpp
@@ -115,6 +103,20 @@ matrix:
       env:
         - TARGET=swift
         - GROUP=PARSER
+      stage: main-test
+    - os: osx
+      compiler: clang
+      osx_image: xcode9.4
+      env:
+        - TARGET=swift
+        - GROUP=RECURSION
+      stage: main-test
+    - os: osx
+      compiler: clang
+      osx_image: xcode10
+      env:
+        - TARGET=swift
+        - GROUP=RECURSION
       stage: main-test
     - os: osx
       compiler: clang
