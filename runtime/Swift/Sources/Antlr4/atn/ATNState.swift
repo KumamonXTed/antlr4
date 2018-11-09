@@ -124,6 +124,8 @@ public class ATNState: Hashable, CustomStringConvertible {
 
 
     public var hashValue: Int {
+        precondition(stateNumber != -1,
+                     "ATNState.hashValue called before stateNumber has been set")
         return stateNumber
     }
 
