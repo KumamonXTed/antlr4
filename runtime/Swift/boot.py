@@ -77,11 +77,10 @@ def gen_parser(grammar, a4):
     :return: None
     """
     grammar_folder = grammar[0:grammar.rindex("/") + 1]
-    java_home = os.environ["JAVA_HOME"]
+    java_home = os.environ.get("JAVA_HOME", '')
     java = java_home + "/bin/java"
     if not os.path.exists(java):
-        antlr_complains("Cannot find java. Check your JAVA_HOME setting.")
-        return
+        java = 'java'
 
     call([java, "-jar", a4,
           "-Dlanguage=Swift", grammar, "-visitor",
