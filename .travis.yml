@@ -71,42 +71,56 @@ matrix:
             - clang-3.7
     - os: osx
       compiler: clang
-      osx_image: xcode9
+      osx_image: xcode10.1
       env:
         - TARGET=cpp
         - GROUP=LEXER
       stage: extended-test
     - os: osx
       compiler: clang
-      osx_image: xcode9
+      osx_image: xcode10.1
       env:
         - TARGET=cpp
         - GROUP=PARSER
       stage: extended-test
     - os: osx
       compiler: clang
-      osx_image: xcode9
+      osx_image: xcode10.1
       env:
         - TARGET=cpp
         - GROUP=RECURSION
       stage: extended-test
     - os: osx
       compiler: clang
-      osx_image: xcode9
+      osx_image: xcode10.1
       env:
         - TARGET=swift
         - GROUP=LEXER
       stage: main-test
     - os: osx
       compiler: clang
-      osx_image: xcode9
+      osx_image: xcode10.1
       env:
         - TARGET=swift
         - GROUP=PARSER
       stage: main-test
     - os: osx
       compiler: clang
-      osx_image: xcode9
+      osx_image: xcode9.4
+      env:
+        - TARGET=swift
+        - GROUP=RECURSION
+      stage: main-test
+    - os: osx
+      compiler: clang
+      osx_image: xcode10
+      env:
+        - TARGET=swift
+        - GROUP=RECURSION
+      stage: main-test
+    - os: osx
+      compiler: clang
+      osx_image: xcode10.1
       env:
         - TARGET=swift
         - GROUP=RECURSION
@@ -119,19 +133,19 @@ matrix:
        - GROUP=ALL
       stage: extended-test
     - os: osx
-      osx_image: xcode9
+      osx_image: xcode10.1
       env:
         - TARGET=dotnet
         - GROUP=LEXER
       stage: extended-test
     - os: osx
-      osx_image: xcode9
+      osx_image: xcode10.1
       env:
         - TARGET=dotnet
         - GROUP=PARSER
       stage: extended-test
     - os: osx
-      osx_image: xcode9
+      osx_image: xcode10.1
       env:
         - TARGET=dotnet
         - GROUP=RECURSION
@@ -185,7 +199,7 @@ matrix:
           sources:
             - deadsnakes # source required so it finds the package definition below
           packages:
-            - python3.5
+            - python3.6
       stage: main-test
     - os: linux
       dist: trusty
