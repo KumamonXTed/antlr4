@@ -335,12 +335,13 @@ public abstract class BaseRuntimeTest {
 
 		if (actualOutput.equals(expectedOutput)) {
 			if (actualParseErrors.equals(expectedParseErrors)) {
-				failNotEquals(
-						"Parse output and parse errors are as expected, but tool errors are incorrect",
+				failNotEquals("[" + descriptor.getTarget() + ":" + descriptor.getTestName() + "] " +
+								"Parse output and parse errors are as expected, but tool errors are incorrect",
 						expectedToolErrors, actualToolErrors);
 			}
 			else {
-				fail("Parse output is as expected, but errors are not: " +
+				fail("[" + descriptor.getTarget() + ":" + descriptor.getTestName() + "] " +
+						"Parse output is as expected, but errors are not: " +
 						"expectedParseErrors:<" + expectedParseErrors +
 						">; actualParseErrors:<" + actualParseErrors +
 						">; expectedToolErrors:<" + expectedToolErrors +
@@ -349,7 +350,8 @@ public abstract class BaseRuntimeTest {
 			}
 		}
 		else {
-			fail("Parse output is incorrect: " +
+			fail("[" + descriptor.getTarget() + ":" + descriptor.getTestName() + "] " +
+					"Parse output is incorrect: " +
 					"expectedOutput:<" + expectedOutput +
 					">; actualOutput:<" + actualOutput +
 					">; expectedParseErrors:<" + expectedParseErrors +
