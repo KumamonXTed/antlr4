@@ -236,10 +236,10 @@
 import Foundation
 
 open class ParserATNSimulator: ATNSimulator {
-    public let debug = true
-    public let debug_list_atn_decisions = true
-    public let dfa_debug = true
-    public let retry_debug = true
+    public let debug = false
+    public let debug_list_atn_decisions = false
+    public let dfa_debug = false
+    public let retry_debug = false
 
     /// 
     /// Just in case this optimization is bad, add an ENV variable to turn it off
