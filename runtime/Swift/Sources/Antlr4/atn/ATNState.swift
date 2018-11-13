@@ -110,12 +110,12 @@ public class ATNState: Hashable, CustomStringConvertible {
     public final var ruleIndex: Int?
     // at runtime, we don't have Rule objects
 
-    public final var epsilonOnlyTransitions: Bool = false
+    public private(set) final var epsilonOnlyTransitions: Bool = false
 
     /// 
     /// Track the transitions emanating from this ATN state.
     /// 
-    internal final var transitions = [Transition]()
+    internal private(set) final var transitions = [Transition]()
 
     /// 
     /// Used to cache lookahead during parsing, not used during construction
