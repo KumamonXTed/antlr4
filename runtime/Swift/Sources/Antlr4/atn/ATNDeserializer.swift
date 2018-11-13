@@ -796,6 +796,10 @@ public class ATNDeserializer {
                 continue
             }
 
+            if (state.stateNumber == -1) {
+                throw ANTLRError.illegalState(msg: "Illegal stateNumber")
+            }
+
             try checkCondition(state.onlyHasEpsilonTransitions() || state.getNumberOfTransitions() <= 1)
 
             if let state = state as? PlusBlockStartState {
