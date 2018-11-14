@@ -593,7 +593,7 @@ open class ParserATNSimulator: ATNSimulator {
 
         if debug {
             let altSubSets = PredictionMode.getConflictingAltSubsets(reach)
-            print("SLL altSubSets=\(altSubSets), configs=\(reach), predict=\(predictedAlt), allSubsetsConflict=\(PredictionMode.allSubsetsConflict(altSubSets)), conflictingAlts=\(getConflictingAlts(reach))")
+            print("SLL altSubSets=\(altSubSets), configs=\(reach), predict=\(predictedAlt), allSubsetsConflict=\(PredictionMode.allSubsetsConflict(altSubSets)), conflictingAlts=\(getConflictingAlts(reach)), D=\(D)")
         }
 
         if predictedAlt != ATN.INVALID_ALT_NUMBER {
@@ -607,6 +607,9 @@ open class ParserATNSimulator: ATNSimulator {
             D.configs.uniqueAlt = predictedAlt
             D.prediction = predictedAlt
         } else {
+            if debug {
+                print("Checking for viable alternative for \(D)")
+            }
             if PredictionMode.hasSLLConflictTerminatingPrediction(mode, reach) {
                 // MORE THAN ONE VIABLE ALTERNATIVE
                 if debug {

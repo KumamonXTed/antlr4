@@ -720,8 +720,10 @@ open class LexerATNSimulator: ATNSimulator {
             let newState = proposed
             newState.stateNumber = dfa.states.count
             configs.setReadonly(true)
+            print("Finalizing state: \(dfa) \(newState) will change to \(configs)")
             newState.configs = configs
             dfa.states[newState] = newState
+            print("After finalizing state: \(dfa) \(newState)")
             return newState
         }
     }
