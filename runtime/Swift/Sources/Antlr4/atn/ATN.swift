@@ -91,14 +91,14 @@ public class ATN {
     public func addState(_ state: ATNState?) {
         if let state = state {
             state.atn = self
-            state.stateNumber = states.count
+            state.atnStateNumber = states.count
         }
 
         states.append(state)
     }
 
     public func removeState(_ state: ATNState) {
-        states[state.stateNumber] = nil
+        states[state.atnStateNumber] = nil
         //states.set(state.stateNumber, nil); // just free mem, don't shift states in list
     }
     @discardableResult

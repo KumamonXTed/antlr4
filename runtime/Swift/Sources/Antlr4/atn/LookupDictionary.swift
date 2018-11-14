@@ -30,7 +30,7 @@ public struct LookupDictionary {
         if type == LookupDictionaryType.lookup {
 
             var hashCode: Int = 7
-            hashCode = 31 * hashCode + config.state.stateNumber
+            hashCode = 31 * hashCode + config.state.atnStateNumber
             hashCode = 31 * hashCode + config.alt
             hashCode = 31 * hashCode + config.semanticContext.hashValue
             return hashCode
@@ -48,7 +48,7 @@ public struct LookupDictionary {
             }
 
             return
-                lhs.state.stateNumber == rhs.state.stateNumber &&
+                lhs.state.atnStateNumber == rhs.state.atnStateNumber &&
                     lhs.alt == rhs.alt &&
                     lhs.semanticContext == rhs.semanticContext
         }

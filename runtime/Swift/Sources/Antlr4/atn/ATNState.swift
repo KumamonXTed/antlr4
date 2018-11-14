@@ -105,7 +105,7 @@ public class ATNState: Hashable, CustomStringConvertible {
     /// 
     public internal(set) final weak var atn: ATN? = nil
 
-    public internal(set) final var stateNumber: Int = INVALID_STATE_NUMBER
+    public internal(set) final var atnStateNumber: Int = INVALID_STATE_NUMBER
 
     public internal(set) final var ruleIndex: Int?
     // at runtime, we don't have Rule objects
@@ -124,9 +124,9 @@ public class ATNState: Hashable, CustomStringConvertible {
 
 
     public var hashValue: Int {
-        precondition(stateNumber != -1,
+        precondition(atnStateNumber != -1,
                      "ATNState.hashValue called before stateNumber has been set")
-        return stateNumber
+        return atnStateNumber
     }
 
 
@@ -136,10 +136,10 @@ public class ATNState: Hashable, CustomStringConvertible {
 
 
     public var description: String {
-        precondition(stateNumber != -1,
+        precondition(atnStateNumber != -1,
                      "ATNState.description called before stateNumber has been set")
         //return "MyClass \(string)"
-        return String(stateNumber)
+        return String(atnStateNumber)
     }
     public final func getTransitions() -> [Transition] {
         return transitions
@@ -154,13 +154,13 @@ public class ATNState: Hashable, CustomStringConvertible {
             epsilonOnlyTransitions = e.isEpsilon()
         }
         else if epsilonOnlyTransitions != e.isEpsilon() {
-            print("ATN state \(stateNumber) has both epsilon and non-epsilon transitions.")
+            print("ATN state \(atnStateNumber) has both epsilon and non-epsilon transitions.")
             epsilonOnlyTransitions = false
         }
 
         var alreadyPresent = false
         for t in transitions {
-            if t.target.stateNumber == e.target.stateNumber {
+            if t.target.atnStateNumber == e.target.atnStateNumber {
                 if let tLabel = t.labelIntervalSet(), let eLabel = e.labelIntervalSet(), tLabel == eLabel {
 //                    print("Repeated transition upon \(eLabel) from \(stateNumber)->\(t.target.stateNumber)")
                     alreadyPresent = true
@@ -210,7 +210,7 @@ public func ==(lhs: ATNState, rhs: ATNState) -> Bool {
         return true
     }
     // are these states same object?
-    return lhs.stateNumber == rhs.stateNumber
+    return lhs.atnStateNumber == rhs.atnStateNumber
 
 }
 

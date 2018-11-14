@@ -134,7 +134,7 @@ public class ATNConfig: Hashable, CustomStringConvertible {
 
     public var hashValue: Int {
         var hashCode = MurmurHash.initialize(7)
-        hashCode = MurmurHash.update(hashCode, state.stateNumber)
+        hashCode = MurmurHash.update(hashCode, state.atnStateNumber)
         hashCode = MurmurHash.update(hashCode, alt)
         hashCode = MurmurHash.update(hashCode, context)
         hashCode = MurmurHash.update(hashCode, semanticContext)
@@ -147,7 +147,7 @@ public class ATNConfig: Hashable, CustomStringConvertible {
         return toString(nil, true)
     }
     public func toString<T>(_ recog: Recognizer<T>?, _ showAlt: Bool) -> String {
-        precondition(state.stateNumber != -1)
+        precondition(state.atnStateNumber != -1)
 
         var buf = "(\(state)"
         if showAlt {
@@ -180,7 +180,7 @@ public func ==(lhs: ATNConfig, rhs: ATNConfig) -> Bool {
 
     }
 
-    if lhs.state.stateNumber != rhs.state.stateNumber {
+    if lhs.state.atnStateNumber != rhs.state.atnStateNumber {
         return false
     }
     if lhs.alt != rhs.alt {

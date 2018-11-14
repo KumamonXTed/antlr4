@@ -76,7 +76,7 @@ public class PredictionContext: Hashable, CustomStringConvertible {
 
         let state = atn.states[_outerContext.invokingState]!
         let transition = state.transition(0) as! RuleTransition
-        return SingletonPredictionContext.create(parent, transition.followState.stateNumber)
+        return SingletonPredictionContext.create(parent, transition.followState.atnStateNumber)
     }
 
     public func size() -> Int {

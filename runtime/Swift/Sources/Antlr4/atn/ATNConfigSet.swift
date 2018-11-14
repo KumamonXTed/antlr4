@@ -296,7 +296,7 @@ public final class ATNConfigSet: Hashable, CustomStringConvertible {
         var configToAlts = [Int: BitSet]()
 
         for i in 0..<length {
-            let hash = configHash(configs[i].state.stateNumber, configs[i].context)
+            let hash = configHash(configs[i].state.atnStateNumber, configs[i].context)
             var alts: BitSet
             if let configToAlt = configToAlts[hash] {
                 alts = configToAlt
@@ -415,7 +415,7 @@ public final class ATNConfigSet: Hashable, CustomStringConvertible {
                 continue
             }
 
-            statesFromAlt1[config.state.stateNumber] = config.context
+            statesFromAlt1[config.state.atnStateNumber] = config.context
             if updatedContext != config.semanticContext {
                 try! configSet.add(ATNConfig(config, updatedContext!), &mergeCache)
             } else {
@@ -435,7 +435,7 @@ public final class ATNConfigSet: Hashable, CustomStringConvertible {
                 /// filter the prediction context for alternatives predicting alt>1
                 /// (basically a graph subtraction algorithm).
                 /// 
-                let context = statesFromAlt1[config.state.stateNumber]
+                let context = statesFromAlt1[config.state.atnStateNumber]
                 if context != nil && context == config.context {
                     // eliminated
                     continue

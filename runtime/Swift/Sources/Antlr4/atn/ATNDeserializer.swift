@@ -798,7 +798,7 @@ public class ATNDeserializer {
                 continue
             }
 
-            if (state.stateNumber == -1) {
+            if (state.atnStateNumber == -1) {
                 throw ANTLRError.illegalState(msg: "Illegal stateNumber")
             }
 

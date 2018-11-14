@@ -598,12 +598,21 @@ open class ParserATNSimulator: ATNSimulator {
 
         if predictedAlt != ATN.INVALID_ALT_NUMBER {
             // NO CONFLICT, UNIQUELY PREDICTED ALT
+
+            if debug {
+                print("No conflict, uniquely predicted alt \(predictedAlt) for \(D)")
+            }
+
             D.isAcceptState = true
             D.configs.uniqueAlt = predictedAlt
             D.prediction = predictedAlt
         } else {
             if PredictionMode.hasSLLConflictTerminatingPrediction(mode, reach) {
                 // MORE THAN ONE VIABLE ALTERNATIVE
+                if debug {
+                    print("More than one viable alternative for \(D)")
+                }
+
                 D.configs.conflictingAlts = getConflictingAlts(reach)
                 D.requiresFullContext = true
                 // in SLL-only mode, we will stop at this state and return the minimum alt
@@ -612,12 +621,20 @@ open class ParserATNSimulator: ATNSimulator {
             }
         }
 
+    if debug {
+        print("D is now \(D)")
+    }
+
         if D.isAcceptState && D.configs.hasSemanticContext {
             predicateDFAState(D, atn.getDecisionState(dfa.decision)!)
             if D.predicates != nil {
                 D.prediction = ATN.INVALID_ALT_NUMBER
             }
         }
+
+    if debug {
+        print("Calling addDFAEdge with <\(dfa)>   <\(previousD)>   <\(t)>   <\(D)>")
+    }
 
         // all adds to dfa are done after we've created full D state
         return addDFAEdge(dfa, previousD, t, D)
@@ -1608,7 +1625,7 @@ open class ParserATNSimulator: ATNSimulator {
         }
 
         let decisionStartState = (p.transition(0).target as! BlockStartState)
-        let blockEndStateNum = decisionStartState.endState!.stateNumber
+        let blockEndStateNum = decisionStartState.endState!.atnStateNumber
         let blockEndState = (atn.states[blockEndStateNum] as! BlockEndState)
 
         // Verify that the top of each stack context leads to loop entry/exit
@@ -1807,7 +1824,7 @@ open class ParserATNSimulator: ATNSimulator {
         }
 
         let returnState = t.followState
-        let newContext = SingletonPredictionContext.create(config.context, returnState.stateNumber)
+        let newContext = SingletonPredictionContext.create(config.context, returnState.atnStateNumber)
         return ATNConfig(config, t.target, newContext)
     }
 

@@ -499,7 +499,7 @@ open class LexerATNSimulator: ATNSimulator {
             switch t.getSerializationType() {
             case Transition.RULE:
                 let ruleTransition = t as! RuleTransition
-                let newContext = SingletonPredictionContext.create(config.context, ruleTransition.followState.stateNumber)
+                let newContext = SingletonPredictionContext.create(config.context, ruleTransition.followState.atnStateNumber)
                 c = LexerATNConfig(config, t.target, newContext)
                 break
 

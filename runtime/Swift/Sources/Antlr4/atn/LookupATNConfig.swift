@@ -23,7 +23,7 @@ public class LookupATNConfig: Hashable {
     public var hashValue: Int {
 
         var hashCode: Int = 7
-        hashCode = 31 * hashCode + config.state.stateNumber
+        hashCode = 31 * hashCode + config.state.atnStateNumber
         hashCode = 31 * hashCode + config.alt
         hashCode = 31 * hashCode + config.semanticContext.hashValue
         return hashCode
@@ -38,7 +38,7 @@ public func ==(lhs: LookupATNConfig, rhs: LookupATNConfig) -> Bool {
         return true
     }
 
-    return lhs.config.state.stateNumber == rhs.config.state.stateNumber &&
+    return lhs.config.state.atnStateNumber == rhs.config.state.atnStateNumber &&
             lhs.config.alt == rhs.config.alt &&
             lhs.config.semanticContext == rhs.config.semanticContext
 }
