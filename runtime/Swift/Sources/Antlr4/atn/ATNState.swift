@@ -103,11 +103,11 @@ public class ATNState: Hashable, CustomStringConvertible {
     /// 
     /// Which ATN are we in?
     /// 
-    public final weak var atn: ATN? = nil
+    public internal(set) final weak var atn: ATN? = nil
 
-    public final var stateNumber: Int = INVALID_STATE_NUMBER
+    public internal(set) final var stateNumber: Int = INVALID_STATE_NUMBER
 
-    public final var ruleIndex: Int?
+    public internal(set) final var ruleIndex: Int?
     // at runtime, we don't have Rule objects
 
     public private(set) final var epsilonOnlyTransitions: Bool = false
@@ -120,7 +120,7 @@ public class ATNState: Hashable, CustomStringConvertible {
     /// 
     /// Used to cache lookahead during parsing, not used during construction
     /// 
-    public final var nextTokenWithinRule: IntervalSet?
+    public internal(set) final var nextTokenWithinRule: IntervalSet?
 
 
     public var hashValue: Int {
@@ -136,6 +136,8 @@ public class ATNState: Hashable, CustomStringConvertible {
 
 
     public var description: String {
+        precondition(stateNumber != -1,
+                     "ATNState.description called before stateNumber has been set")
         //return "MyClass \(string)"
         return String(stateNumber)
     }
@@ -152,7 +154,7 @@ public class ATNState: Hashable, CustomStringConvertible {
             epsilonOnlyTransitions = e.isEpsilon()
         }
         else if epsilonOnlyTransitions != e.isEpsilon() {
-            print("ATN state %d has both epsilon and non-epsilon transitions.\n", String(stateNumber))
+            print("ATN state \(stateNumber) has both epsilon and non-epsilon transitions.")
             epsilonOnlyTransitions = false
         }
 

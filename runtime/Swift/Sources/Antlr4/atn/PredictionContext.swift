@@ -685,6 +685,7 @@ public class PredictionContext: Hashable, CustomStringConvertible {
                 var last = true
                 var p = self
                 var stateNumber = currentState
+                precondition(stateNumber != -1)
                 var localBuffer = "["
                 while !p.isEmpty() && p !== stop {
                     var index = 0
@@ -729,6 +730,7 @@ public class PredictionContext: Hashable, CustomStringConvertible {
                         }
                     }
                     stateNumber = p.getReturnState(index)
+                    precondition(stateNumber != -1)
                     p = p.getParent(index)!
                 }
                 localBuffer += "]"

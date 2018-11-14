@@ -164,6 +164,7 @@ public class ATNDeserializer {
         p += 1
         for _ in 0..<numNonGreedyStates {
             let stateNumber = toInt(data[p])
+            precondition(stateNumber != -1)
             p += 1
             (atn.states[stateNumber] as! DecisionState).nonGreedy = true
         }
@@ -173,6 +174,7 @@ public class ATNDeserializer {
             p += 1
             for _ in 0..<numPrecedenceStates {
                 let stateNumber = toInt(data[p])
+                precondition(stateNumber != -1)
                 p += 1
                 (atn.states[stateNumber] as! RuleStartState).isPrecedenceRule = true
             }

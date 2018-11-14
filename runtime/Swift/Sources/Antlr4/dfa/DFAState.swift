@@ -34,13 +34,13 @@
 public final class DFAState: Hashable, CustomStringConvertible {
     public internal(set) var stateNumber = -1
 
-    public internal(set) var configs = ATNConfigSet()
+    public internal(set) var configs: ATNConfigSet
 
     /// 
     /// `edges[symbol]` points to target of symbol. Shift up by 1 so (-1)
     /// _org.antlr.v4.runtime.Token#EOF_ maps to `edges[0]`.
     ///
-    public internal(set) var edges: [DFAState?]!
+    public internal(set) var edges: [DFAState?]?
 
     public internal(set) var isAcceptState = false
 
@@ -51,7 +51,7 @@ public final class DFAState: Hashable, CustomStringConvertible {
     /// 
     public internal(set) var prediction = 0
 
-    public internal(set) var lexerActionExecutor: LexerActionExecutor!
+    public internal(set) var lexerActionExecutor: LexerActionExecutor?
 
     /// 
     /// Indicates that this state was created during SLL prediction that
@@ -94,13 +94,6 @@ public final class DFAState: Hashable, CustomStringConvertible {
         public var description: String {
             return "(\(pred),\(alt))"
         }
-    }
-
-    public init() {
-    }
-
-    public init(_ stateNumber: Int) {
-        self.stateNumber = stateNumber
     }
 
     public init(_ configs: ATNConfigSet) {

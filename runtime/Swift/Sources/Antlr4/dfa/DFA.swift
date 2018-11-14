@@ -120,7 +120,7 @@ public class DFA: CustomStringConvertible {
                 s0.edges = edges + increase
             }
 
-            s0.edges[precedence] = startState
+            s0.edges![precedence] = startState
         }
     }
 

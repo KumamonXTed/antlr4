@@ -260,11 +260,14 @@ open class LexerATNSimulator: ATNSimulator {
     /// 
 
     internal func getExistingTargetState(_ s: DFAState, _ t: Int) -> DFAState? {
-        if s.edges == nil || t < LexerATNSimulator.MIN_DFA_EDGE || t > LexerATNSimulator.MAX_DFA_EDGE {
+        guard let edges = s.edges else {
+            return nil
+        }
+        if t < LexerATNSimulator.MIN_DFA_EDGE || t > LexerATNSimulator.MAX_DFA_EDGE {
             return nil
         }
 
-        let target = s.edges[t - LexerATNSimulator.MIN_DFA_EDGE]
+        let target = edges[t - LexerATNSimulator.MIN_DFA_EDGE]
         if LexerATNSimulator.debug && target != nil {
             print("reuse state \(s.stateNumber) edge to \(target!.stateNumber)")
         }
@@ -638,7 +641,7 @@ open class LexerATNSimulator: ATNSimulator {
     }
 
 
-    final func addDFAEdge(_ from: DFAState,
+    private final func addDFAEdge(_ from: DFAState,
         _ t: Int,
         _ q: ATNConfigSet) -> DFAState {
             /// 
@@ -665,7 +668,7 @@ open class LexerATNSimulator: ATNSimulator {
             return to
     }
 
-    final func addDFAEdge(_ p: DFAState, _ t: Int, _ q: DFAState) {
+    private final func addDFAEdge(_ p: DFAState, _ t: Int, _ q: DFAState) {
         if t < LexerATNSimulator.MIN_DFA_EDGE || t > LexerATNSimulator.MAX_DFA_EDGE {
             // Only track edges within the DFA bounds
             return
@@ -680,7 +683,7 @@ open class LexerATNSimulator: ATNSimulator {
                 //  make room for tokens 1..n and -1 masquerading as index 0
                 p.edges = [DFAState?](repeating: nil, count: LexerATNSimulator.MAX_DFA_EDGE - LexerATNSimulator.MIN_DFA_EDGE + 1)
             }
-            p.edges[t - LexerATNSimulator.MIN_DFA_EDGE] = q // connect
+            p.edges![t - LexerATNSimulator.MIN_DFA_EDGE] = q // connect
         }
     }
 
