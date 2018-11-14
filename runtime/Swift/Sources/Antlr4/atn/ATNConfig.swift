@@ -147,7 +147,9 @@ public class ATNConfig: Hashable, CustomStringConvertible {
         return toString(nil, true)
     }
     public func toString<T>(_ recog: Recognizer<T>?, _ showAlt: Bool) -> String {
-        precondition(state.atnStateNumber != -1)
+        if (state.atnStateNumber == -1) {
+            print("Error: state.stateNumber == -1 in ATNConfig.description")
+        }
 
         var buf = "(\(state)"
         if showAlt {

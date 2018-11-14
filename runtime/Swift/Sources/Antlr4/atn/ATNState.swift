@@ -64,7 +64,11 @@
 /// 
 /// 
 /// 
-/// 
+///
+
+import Foundation
+
+
 public class ATNState: Hashable, CustomStringConvertible {
     // constants for serialization
     public static let INVALID_TYPE: Int = 0
@@ -123,9 +127,13 @@ public class ATNState: Hashable, CustomStringConvertible {
     public internal(set) final var nextTokenWithinRule: IntervalSet?
 
 
+    private let stateID = UUID()
+
+
     public var hashValue: Int {
-        precondition(atnStateNumber != -1,
-                     "ATNState.hashValue called before stateNumber has been set")
+        if (atnStateNumber == -1) {
+            print("Error: ATNState.hashValue called before stateNumber has been set")
+        }
         return atnStateNumber
     }
 
@@ -136,11 +144,13 @@ public class ATNState: Hashable, CustomStringConvertible {
 
 
     public var description: String {
-        precondition(atnStateNumber != -1,
-                     "ATNState.description called before stateNumber has been set")
+        if (atnStateNumber == -1) {
+            print("Error: ATNState.description called before stateNumber has been set")
+        }
         //return "MyClass \(string)"
-        return String(atnStateNumber)
+        return "\(atnStateNumber):\(stateID)"
     }
+
     public final func getTransitions() -> [Transition] {
         return transitions
     }
