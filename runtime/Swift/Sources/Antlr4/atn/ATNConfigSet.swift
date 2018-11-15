@@ -315,17 +315,17 @@ public final class ATNConfigSet: Hashable, CustomStringConvertible {
         return Array(configToAlts.values)
     }
 
-    public func getStateToAltMap() -> [ATNState: BitSet] {
+    public func getStateToAltMap() -> [Int: BitSet] {
         let length = configs.count
-        var m = [ATNState: BitSet]()
+        var m = [Int: BitSet]()
 
         for i in 0..<length {
             var alts: BitSet
-            if let mAlts =  m[configs[i].state] {
+            if let mAlts =  m[configs[i].state.atnStateNumber] {
                 alts = mAlts
             } else {
                 alts = BitSet()
-                m[configs[i].state] = alts
+                m[configs[i].state.atnStateNumber] = alts
             }
 
             try! alts.set(configs[i].alt)
