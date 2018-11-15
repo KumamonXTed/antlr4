@@ -4,6 +4,7 @@
 /// can be found in the LICENSE.txt file in the project root.
 /// 
 
+import Foundation
 
 /// 
 /// Specialized _java.util.Set_`<`_org.antlr.v4.runtime.atn.ATNConfig_`>` that can track
@@ -67,6 +68,9 @@ public final class ATNConfigSet: Hashable, CustomStringConvertible {
     public let fullCtx: Bool
 
     private var cachedHashCode = -1
+
+    private let setID = UUID()
+
 
     public init(_ fullCtx: Bool = true, isOrdered: Bool = false) {
         configLookup = isOrdered ? LookupDictionary(type: LookupDictionaryType.ordered) : LookupDictionary()
@@ -262,7 +266,7 @@ public final class ATNConfigSet: Hashable, CustomStringConvertible {
     }
 
     public var description: String {
-        var buf = ""
+        var buf = "\(setID):"
         buf += String(describing: elements())
         if hasSemanticContext {
             buf += ",hasSemanticContext=true"

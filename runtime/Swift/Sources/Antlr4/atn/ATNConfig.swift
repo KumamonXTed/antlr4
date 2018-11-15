@@ -11,7 +11,9 @@
 /// chain used to arrive at the state.  The semantic context is
 /// the tree of semantic predicates encountered before reaching
 /// an ATN state.
-/// 
+///
+
+import Foundation
 
 
 public class ATNConfig: Hashable, CustomStringConvertible {
@@ -65,6 +67,8 @@ public class ATNConfig: Hashable, CustomStringConvertible {
     public internal(set) final var reachesIntoOuterContext: Int = 0
 
     public final let semanticContext: SemanticContext
+
+    private let configID = UUID()
 
     public init(_ state: ATNState,
                 _ alt: Int,
@@ -151,7 +155,7 @@ public class ATNConfig: Hashable, CustomStringConvertible {
             print("Error: state.stateNumber == -1 in ATNConfig.description")
         }
 
-        var buf = "(\(state)"
+        var buf = "(\(state):\(configID)"
         if showAlt {
             buf += ",\(alt)"
         }
