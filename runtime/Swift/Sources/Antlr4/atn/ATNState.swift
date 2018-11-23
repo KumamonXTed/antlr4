@@ -64,7 +64,11 @@
 /// 
 /// 
 /// 
-/// 
+///
+
+import Foundation
+
+
 public class ATNState: Hashable, CustomStringConvertible {
     // constants for serialization
     public static let INVALID_TYPE: Int = 0
@@ -103,30 +107,34 @@ public class ATNState: Hashable, CustomStringConvertible {
     /// 
     /// Which ATN are we in?
     /// 
-    public final weak var atn: ATN? = nil
+    public internal(set) final weak var atn: ATN? = nil
 
-    public final var stateNumber: Int = INVALID_STATE_NUMBER
+    public internal(set) final var atnStateNumber: Int = INVALID_STATE_NUMBER
 
-    public final var ruleIndex: Int?
+    public internal(set) final var ruleIndex: Int?
     // at runtime, we don't have Rule objects
 
-    public final var epsilonOnlyTransitions: Bool = false
+    public private(set) final var epsilonOnlyTransitions: Bool = false
 
     /// 
     /// Track the transitions emanating from this ATN state.
     /// 
-    internal final var transitions = [Transition]()
+    internal private(set) final var transitions = [Transition]()
 
     /// 
     /// Used to cache lookahead during parsing, not used during construction
     /// 
-    public final var nextTokenWithinRule: IntervalSet?
+    public internal(set) final var nextTokenWithinRule: IntervalSet?
+
+
+    private let stateID = UUID()
 
 
     public var hashValue: Int {
-        precondition(stateNumber != -1,
-                     "ATNState.hashValue called before stateNumber has been set")
-        return stateNumber
+        if (atnStateNumber == -1) {
+            print("Error: ATNState.hashValue called before stateNumber has been set")
+        }
+        return atnStateNumber
     }
 
 
@@ -136,9 +144,13 @@ public class ATNState: Hashable, CustomStringConvertible {
 
 
     public var description: String {
+        if (atnStateNumber == -1) {
+            print("Error: ATNState.description called before stateNumber has been set")
+        }
         //return "MyClass \(string)"
-        return String(stateNumber)
+        return "\(atnStateNumber):\(stateID)"
     }
+
     public final func getTransitions() -> [Transition] {
         return transitions
     }
@@ -152,13 +164,13 @@ public class ATNState: Hashable, CustomStringConvertible {
             epsilonOnlyTransitions = e.isEpsilon()
         }
         else if epsilonOnlyTransitions != e.isEpsilon() {
-            print("ATN state %d has both epsilon and non-epsilon transitions.\n", String(stateNumber))
+            print("ATN state \(atnStateNumber) has both epsilon and non-epsilon transitions.")
             epsilonOnlyTransitions = false
         }
 
         var alreadyPresent = false
         for t in transitions {
-            if t.target.stateNumber == e.target.stateNumber {
+            if t.target.atnStateNumber == e.target.atnStateNumber {
                 if let tLabel = t.labelIntervalSet(), let eLabel = e.labelIntervalSet(), tLabel == eLabel {
 //                    print("Repeated transition upon \(eLabel) from \(stateNumber)->\(t.target.stateNumber)")
                     alreadyPresent = true
@@ -208,7 +220,7 @@ public func ==(lhs: ATNState, rhs: ATNState) -> Bool {
         return true
     }
     // are these states same object?
-    return lhs.stateNumber == rhs.stateNumber
+    return lhs.atnStateNumber == rhs.atnStateNumber
 
 }
 

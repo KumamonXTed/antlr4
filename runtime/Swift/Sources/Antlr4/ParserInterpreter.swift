@@ -84,7 +84,7 @@ public class ParserInterpreter: Parser {
         for  state in atn.states {
             if let state = state as? StarLoopEntryState {
                 if state.precedenceRuleDecision {
-                    try! self.statesNeedingLeftRecursionContext.set(state.stateNumber)
+                    try! self.statesNeedingLeftRecursionContext.set(state.atnStateNumber)
                 }
             }
 
@@ -122,9 +122,9 @@ public class ParserInterpreter: Parser {
 
         let rootContext = InterpreterRuleContext(nil, ATNState.INVALID_STATE_NUMBER, startRuleIndex)
         if startRuleStartState.isPrecedenceRule {
-            try enterRecursionRule(rootContext, startRuleStartState.stateNumber, startRuleIndex, 0)
+            try enterRecursionRule(rootContext, startRuleStartState.atnStateNumber, startRuleIndex, 0)
         } else {
-            try enterRule(rootContext, startRuleStartState.stateNumber, startRuleIndex)
+            try enterRule(rootContext, startRuleStartState.atnStateNumber, startRuleIndex)
         }
 
         while true {
@@ -152,7 +152,7 @@ public class ParserInterpreter: Parser {
                     try self.visitState(p)
                 }
                  catch ANTLRException.recognition(let e) {
-                    setState(self.atn.ruleToStopState[p.ruleIndex!].stateNumber)
+                    setState(self.atn.ruleToStopState[p.ruleIndex!].atnStateNumber)
                     getContext()!.exception = e
                     getErrorHandler().reportError(self, e)
                     try getErrorHandler().recover(self, e)
@@ -191,7 +191,7 @@ public class ParserInterpreter: Parser {
         let transition = p.transition(altNum - 1)
         switch transition.getSerializationType() {
         case Transition.EPSILON:
-            if try statesNeedingLeftRecursionContext.get(p.stateNumber) &&
+            if try statesNeedingLeftRecursionContext.get(p.atnStateNumber) &&
                     !(transition.target is LoopEndState) {
                 // We are at the start of a left recursive rule's (...)* loop
                 // but it's not the exit branch of loop.
@@ -200,7 +200,7 @@ public class ParserInterpreter: Parser {
                         _parentContextStack.last!.1, //peek()
 
                         _ctx!.getRuleIndex())
-                try    pushNewRecursionContext(ctx, atn.ruleToStartState[p.ruleIndex!].stateNumber, _ctx!.getRuleIndex())
+                try    pushNewRecursionContext(ctx, atn.ruleToStartState[p.ruleIndex!].atnStateNumber, _ctx!.getRuleIndex())
             }
             break
 
@@ -224,11 +224,11 @@ public class ParserInterpreter: Parser {
         case Transition.RULE:
             let ruleStartState = transition.target as! RuleStartState
             let ruleIndex = ruleStartState.ruleIndex!
-            let ctx = InterpreterRuleContext(_ctx, p.stateNumber, ruleIndex)
+            let ctx = InterpreterRuleContext(_ctx, p.atnStateNumber, ruleIndex)
             if ruleStartState.isPrecedenceRule {
-                try enterRecursionRule(ctx, ruleStartState.stateNumber, ruleIndex, (transition as! RuleTransition).precedence)
+                try enterRecursionRule(ctx, ruleStartState.atnStateNumber, ruleIndex, (transition as! RuleTransition).precedence)
             } else {
-                try enterRule(ctx, transition.target.stateNumber, ruleIndex)
+                try enterRule(ctx, transition.target.atnStateNumber, ruleIndex)
             }
             break
 
@@ -255,7 +255,7 @@ public class ParserInterpreter: Parser {
 
         }
 
-        setState(transition.target.stateNumber)
+        setState(transition.target.atnStateNumber)
     }
 
     internal func visitRuleStopState(_ p: ATNState) throws {
@@ -269,7 +269,7 @@ public class ParserInterpreter: Parser {
         }
 
         let ruleTransition = atn.states[getState()]!.transition(0) as! RuleTransition
-        setState(ruleTransition.followState.stateNumber)
+        setState(ruleTransition.followState.atnStateNumber)
     }
 
     /// Override this parser interpreters normal decision-making process
