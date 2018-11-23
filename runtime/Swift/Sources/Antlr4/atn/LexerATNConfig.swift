@@ -78,7 +78,7 @@ public class LexerATNConfig: ATNConfig {
     }*/
     public var hashValue: Int {
         var hashCode = MurmurHash.initialize(7)
-        hashCode = MurmurHash.update(hashCode, state.stateNumber)
+        hashCode = MurmurHash.update(hashCode, state.atnStateNumber)
         hashCode = MurmurHash.update(hashCode, alt)
         hashCode = MurmurHash.update(hashCode, context)
         hashCode = MurmurHash.update(hashCode, semanticContext)
@@ -105,7 +105,7 @@ public func ==(lhs: LexerATNConfig, rhs: LexerATNConfig) -> Bool {
 
 
 
-    if lhs.state.stateNumber != rhs.state.stateNumber {
+    if lhs.state.atnStateNumber != rhs.state.atnStateNumber {
         return false
     }
     if lhs.alt != rhs.alt {

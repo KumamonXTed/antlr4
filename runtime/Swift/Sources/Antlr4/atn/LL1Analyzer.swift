@@ -192,7 +192,7 @@ public class LL1Analyzer {
                     continue
                 }
 
-                let newContext = SingletonPredictionContext.create(ctx, rt.followState.stateNumber)
+                let newContext = SingletonPredictionContext.create(ctx, rt.followState.atnStateNumber)
                 try! calledRuleStack.set(rt.target.ruleIndex!)
                 _LOOK(t.target, stopState, newContext, look, &lookBusy, calledRuleStack, seeThruPreds, addEOF)
                 try! calledRuleStack.clear(rt.target.ruleIndex!)

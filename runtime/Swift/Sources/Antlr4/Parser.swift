@@ -661,7 +661,7 @@ open class Parser: Recognizer<ParserATNSimulator> {
     /// /@Deprecated
     /// 
     public func enterRecursionRule(_ localctx: ParserRuleContext, _ ruleIndex: Int) throws {
-        try enterRecursionRule(localctx, getATN().ruleToStartState[ruleIndex].stateNumber, ruleIndex, 0)
+        try enterRecursionRule(localctx, getATN().ruleToStartState[ruleIndex].atnStateNumber, ruleIndex, 0)
     }
 
     public func enterRecursionRule(_ localctx: ParserRuleContext, _ state: Int, _ ruleIndex: Int, _ precedence: Int) throws {

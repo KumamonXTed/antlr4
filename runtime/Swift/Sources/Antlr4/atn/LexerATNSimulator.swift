@@ -69,7 +69,7 @@ open class LexerATNSimulator: ATNSimulator {
     /// 
     public var charPositionInLine = 0
 
-    public final var decisionToDFA: [DFA]
+    public private(set) final var decisionToDFA: [DFA]
     
     internal var mode = Lexer.DEFAULT_MODE
     
@@ -260,11 +260,14 @@ open class LexerATNSimulator: ATNSimulator {
     /// 
 
     internal func getExistingTargetState(_ s: DFAState, _ t: Int) -> DFAState? {
-        if s.edges == nil || t < LexerATNSimulator.MIN_DFA_EDGE || t > LexerATNSimulator.MAX_DFA_EDGE {
+        guard let edges = s.edges else {
+            return nil
+        }
+        if t < LexerATNSimulator.MIN_DFA_EDGE || t > LexerATNSimulator.MAX_DFA_EDGE {
             return nil
         }
 
-        let target = s.edges[t - LexerATNSimulator.MIN_DFA_EDGE]
+        let target = edges[t - LexerATNSimulator.MIN_DFA_EDGE]
         if LexerATNSimulator.debug && target != nil {
             print("reuse state \(s.stateNumber) edge to \(target!.stateNumber)")
         }
@@ -286,7 +289,7 @@ open class LexerATNSimulator: ATNSimulator {
     /// 
 
     internal func computeTargetState(_ input: CharStream, _ s: DFAState, _ t: Int) throws -> DFAState {
-        let reach = OrderedATNConfigSet()
+        let reach = ATNConfigSet(true, isOrdered: true)
 
         // if we don't find an existing DFA state
         // Fill reach starting from closure, following t transitions
@@ -404,7 +407,7 @@ open class LexerATNSimulator: ATNSimulator {
     final func computeStartState(_ input: CharStream,
         _ p: ATNState) throws -> ATNConfigSet {
             let initialContext = PredictionContext.EMPTY
-            let configs = OrderedATNConfigSet()
+            let configs = ATNConfigSet(true, isOrdered: true)
             let length = p.getNumberOfTransitions()
             for i in 0..<length {
                 let target = p.transition(i).target
@@ -496,7 +499,7 @@ open class LexerATNSimulator: ATNSimulator {
             switch t.getSerializationType() {
             case Transition.RULE:
                 let ruleTransition = t as! RuleTransition
-                let newContext = SingletonPredictionContext.create(config.context, ruleTransition.followState.stateNumber)
+                let newContext = SingletonPredictionContext.create(config.context, ruleTransition.followState.atnStateNumber)
                 c = LexerATNConfig(config, t.target, newContext)
                 break
 
@@ -638,7 +641,7 @@ open class LexerATNSimulator: ATNSimulator {
     }
 
 
-    final func addDFAEdge(_ from: DFAState,
+    private final func addDFAEdge(_ from: DFAState,
         _ t: Int,
         _ q: ATNConfigSet) -> DFAState {
             /// 
@@ -665,7 +668,7 @@ open class LexerATNSimulator: ATNSimulator {
             return to
     }
 
-    final func addDFAEdge(_ p: DFAState, _ t: Int, _ q: DFAState) {
+    private final func addDFAEdge(_ p: DFAState, _ t: Int, _ q: DFAState) {
         if t < LexerATNSimulator.MIN_DFA_EDGE || t > LexerATNSimulator.MAX_DFA_EDGE {
             // Only track edges within the DFA bounds
             return
@@ -680,7 +683,7 @@ open class LexerATNSimulator: ATNSimulator {
                 //  make room for tokens 1..n and -1 masquerading as index 0
                 p.edges = [DFAState?](repeating: nil, count: LexerATNSimulator.MAX_DFA_EDGE - LexerATNSimulator.MIN_DFA_EDGE + 1)
             }
-            p.edges[t - LexerATNSimulator.MIN_DFA_EDGE] = q // connect
+            p.edges![t - LexerATNSimulator.MIN_DFA_EDGE] = q // connect
         }
     }
 
@@ -717,8 +720,14 @@ open class LexerATNSimulator: ATNSimulator {
             let newState = proposed
             newState.stateNumber = dfa.states.count
             configs.setReadonly(true)
+            if (LexerATNSimulator.debug) {
+                print("Finalizing state: \(dfa) \(newState) will change to \(configs)")
+            }
             newState.configs = configs
             dfa.states[newState] = newState
+            if (LexerATNSimulator.debug) {
+                print("After finalizing state: \(dfa) \(newState)")
+            }
             return newState
         }
     }

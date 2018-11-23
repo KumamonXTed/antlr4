@@ -253,7 +253,7 @@ open class ParserATNSimulator: ATNSimulator {
 
     internal final unowned let parser: Parser
 
-    public final var decisionToDFA: [DFA]
+    public private(set) final var decisionToDFA: [DFA]
 
     ///
     /// SLL, LL, or LL + exact ambig detection?
@@ -581,37 +581,52 @@ open class ParserATNSimulator: ATNSimulator {
     /// 
    func computeTargetState(_ dfa: DFA, _ previousD: DFAState, _ t: Int) throws -> DFAState {
 
-        let reach = try computeReachSet(previousD.configs, t, false)
-        if reach == nil {
+        guard let reach = try computeReachSet(previousD.configs, t, false) else {
             addDFAEdge(dfa, previousD, t, ATNSimulator.ERROR)
             return ATNSimulator.ERROR
         }
 
         // create new target state; we'll add to DFA after it's complete
-        var D: DFAState = DFAState(reach!)
+        let D = DFAState(reach)
 
-        let predictedAlt: Int = ParserATNSimulator.getUniqueAlt(reach!)
+        let predictedAlt = ParserATNSimulator.getUniqueAlt(reach)
 
         if debug {
-            let altSubSets = PredictionMode.getConflictingAltSubsets(reach!)
-            print("SLL altSubSets=\(altSubSets), configs=\(reach!), predict=\(predictedAlt), allSubsetsConflict=\(PredictionMode.allSubsetsConflict(altSubSets)), conflictingAlts=\(getConflictingAlts(reach!))")
+            let altSubSets = PredictionMode.getConflictingAltSubsets(reach)
+            print("SLL altSubSets=\(altSubSets), configs=\(reach), predict=\(predictedAlt), allSubsetsConflict=\(PredictionMode.allSubsetsConflict(altSubSets)), conflictingAlts=\(getConflictingAlts(reach)), D=\(D)")
         }
 
         if predictedAlt != ATN.INVALID_ALT_NUMBER {
             // NO CONFLICT, UNIQUELY PREDICTED ALT
+
+            if debug {
+                print("No conflict, uniquely predicted alt \(predictedAlt) for \(D)")
+            }
+
             D.isAcceptState = true
             D.configs.uniqueAlt = predictedAlt
             D.prediction = predictedAlt
         } else {
-            if PredictionMode.hasSLLConflictTerminatingPrediction(mode, reach!) {
+            if debug {
+                print("Checking for viable alternative for \(D)")
+            }
+            if PredictionMode.hasSLLConflictTerminatingPrediction(mode, reach) {
                 // MORE THAN ONE VIABLE ALTERNATIVE
-                D.configs.conflictingAlts = getConflictingAlts(reach!)
+                if debug {
+                    print("More than one viable alternative for \(D)")
+                }
+
+                D.configs.conflictingAlts = getConflictingAlts(reach)
                 D.requiresFullContext = true
                 // in SLL-only mode, we will stop at this state and return the minimum alt
                 D.isAcceptState = true
                 D.prediction = D.configs.conflictingAlts!.firstSetBit()
             }
         }
+
+    if debug {
+        print("D is now \(D)")
+    }
 
         if D.isAcceptState && D.configs.hasSemanticContext {
             predicateDFAState(D, atn.getDecisionState(dfa.decision)!)
@@ -620,9 +635,12 @@ open class ParserATNSimulator: ATNSimulator {
             }
         }
 
+    if debug {
+        print("Calling addDFAEdge with <\(dfa)>   <\(previousD)>   <\(t)>   <\(D)>")
+    }
+
         // all adds to dfa are done after we've created full D state
-        D = addDFAEdge(dfa, previousD, t, D)!
-        return D
+        return addDFAEdge(dfa, previousD, t, D)
     }
 
     final func predicateDFAState(_ dfaState: DFAState, _ decisionState: DecisionState) {
@@ -1610,7 +1628,7 @@ open class ParserATNSimulator: ATNSimulator {
         }
 
         let decisionStartState = (p.transition(0).target as! BlockStartState)
-        let blockEndStateNum = decisionStartState.endState!.stateNumber
+        let blockEndStateNum = decisionStartState.endState!.atnStateNumber
         let blockEndState = (atn.states[blockEndStateNum] as! BlockEndState)
 
         // Verify that the top of each stack context leads to loop entry/exit
@@ -1809,7 +1827,7 @@ open class ParserATNSimulator: ATNSimulator {
         }
 
         let returnState = t.followState
-        let newContext = SingletonPredictionContext.create(config.context, returnState.stateNumber)
+        let newContext = SingletonPredictionContext.create(config.context, returnState.atnStateNumber)
         return ATNConfig(config, t.target, newContext)
     }
 
@@ -1951,29 +1969,20 @@ open class ParserATNSimulator: ATNSimulator {
     /// - parameter t: The input symbol
     /// - parameter to: The target state for the edge
     /// 
-    /// - returns: If `to` is `null`, this method returns `null`;
-    /// otherwise this method returns the result of calling _#addDFAState_
-    /// on `to`
+    /// - returns: the result of calling _#addDFAState_ on `to`
     /// 
     @discardableResult
-    final func addDFAEdge(_ dfa: DFA,
-                          _ from: DFAState?,
+    private final func addDFAEdge(_ dfa: DFA,
+                          _ from: DFAState,
                           _ t: Int,
-                          _ to: DFAState?) -> DFAState? {
+                          _ to: DFAState) -> DFAState {
         var to = to
         if debug {
-            print("EDGE \(from?.description ?? "nil")) -> \(to?.description ?? "nil") upon \(getTokenName(t))")
+            print("EDGE \(from) -> \(to) upon \(getTokenName(t))")
         }
 
-        if to == nil {
-            return nil
-        }
-
-        to = addDFAState(dfa, to!) // used existing if possible not incoming
-        if from == nil || t < -1 || t > atn.maxTokenType {
-            return to
-        }
-        guard let from = from else {
+        to = addDFAState(dfa, to) // used existing if possible not incoming
+        if t < -1 || t > atn.maxTokenType {
             return to
         }
         dfaStateMutex.synchronized {
@@ -1982,7 +1991,7 @@ open class ParserATNSimulator: ATNSimulator {
                 from.edges = [DFAState?](repeating: nil, count: self.atn.maxTokenType + 1 + 1)       //new DFAState[atn.maxTokenType+1+1];
             }
 
-            from.edges![t + 1] = to! // connect
+            from.edges![t + 1] = to // connect
         }
 
         if debug {
@@ -2007,7 +2016,7 @@ open class ParserATNSimulator: ATNSimulator {
     /// state if `D` is already in the DFA, or `D` itself if the
     /// state was not already present.
     /// 
-    final func addDFAState(_ dfa: DFA, _ D: DFAState) -> DFAState {
+    private final func addDFAState(_ dfa: DFA, _ D: DFAState) -> DFAState {
         if D == ATNSimulator.ERROR {
             return D
         }
@@ -2018,7 +2027,8 @@ open class ParserATNSimulator: ATNSimulator {
             }
 
             D.stateNumber = dfa.states.count
-            
+            precondition(D.stateNumber != -1)
+
             if !D.configs.isReadonly() {
                 try! D.configs.optimizeConfigs(self)
                 D.configs.setReadonly(true)
