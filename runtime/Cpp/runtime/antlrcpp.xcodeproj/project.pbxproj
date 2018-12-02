@@ -796,7 +796,6 @@
 		27745F071CE49C000067C6A3 /* RuntimeMetaData.h in Headers */ = {isa = PBXBuildFile; fileRef = 27745EFC1CE49C000067C6A3 /* RuntimeMetaData.h */; };
 		27745F081CE49C000067C6A3 /* RuntimeMetaData.h in Headers */ = {isa = PBXBuildFile; fileRef = 27745EFC1CE49C000067C6A3 /* RuntimeMetaData.h */; };
 		27874F1E1CCB7A0700AF1C53 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27874F1D1CCB7A0700AF1C53 /* CoreFoundation.framework */; };
-		27874F211CCB7B1700AF1C53 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27874F1D1CCB7A0700AF1C53 /* CoreFoundation.framework */; };
 		2793DC851F08083F00A84290 /* TokenSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2793DC841F08083F00A84290 /* TokenSource.cpp */; };
 		2793DC861F08083F00A84290 /* TokenSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2793DC841F08083F00A84290 /* TokenSource.cpp */; };
 		2793DC871F08083F00A84290 /* TokenSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2793DC841F08083F00A84290 /* TokenSource.cpp */; };
@@ -921,6 +920,7 @@
 		27DB44D91D0463DB007E790B /* XPathWildcardElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27DB449B1D045537007E790B /* XPathWildcardElement.cpp */; };
 		27DB44DA1D0463DB007E790B /* XPathWildcardElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DB449C1D045537007E790B /* XPathWildcardElement.h */; };
 		27F4A8561D4CEB2A00E067EE /* Any.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F4A8551D4CEB2A00E067EE /* Any.h */; };
+		CEF8405D21B3BD140059188F /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27874F1D1CCB7A0700AF1C53 /* CoreFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1258,7 +1258,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27874F211CCB7B1700AF1C53 /* CoreFoundation.framework in Frameworks */,
+				CEF8405D21B3BD140059188F /* CoreFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1658,6 +1658,7 @@
 				27874F221CCBB34200AF1C53 /* Linked Frameworks */,
 				37D727AB1867AF1E007B6D10 /* Products */,
 				276E5C0A1CDB57AA003FF4B4 /* runtime */,
+				CEF8405C21B3BD140059188F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1669,6 +1670,13 @@
 				270C67F01CDB4F1E00116E17 /* antlr4_ios.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		CEF8405C21B3BD140059188F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -9,7 +9,7 @@
 /// 
 /// -  Sam Harwell
 /// 
-
+import Foundation
 public class ConsoleErrorListener: BaseErrorListener {
     /// 
     /// Provides a default instance of _org.antlr.v4.runtime.ConsoleErrorListener_.
@@ -33,7 +33,8 @@ public class ConsoleErrorListener: BaseErrorListener {
                                         _ e: AnyObject?
     ) {
         if Parser.ConsoleError {
-            errPrint("line \(line):\(charPositionInLine) \(msg)")
+            
+            errPrint("time: \(Date()) line \(line):\(charPositionInLine) \(msg)")
         }
     }
 

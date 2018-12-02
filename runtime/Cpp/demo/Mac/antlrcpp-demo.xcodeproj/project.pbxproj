@@ -19,6 +19,21 @@
 		27C6E1831C972FFC0079AF06 /* TParserListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27C6E17B1C972FFC0079AF06 /* TParserListener.cpp */; };
 		27C6E1841C972FFC0079AF06 /* TParserVisitor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27C6E17D1C972FFC0079AF06 /* TParserVisitor.cpp */; };
 		37F1356D1B4AC02800E0CACF /* antlrcpp_Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 37F1356C1B4AC02800E0CACF /* antlrcpp_Tests.mm */; };
+		CEF8404821B3B49F0059188F /* ObjectiveCParserListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEF8403321B3B49F0059188F /* ObjectiveCParserListener.cpp */; };
+		CEF8404921B3B49F0059188F /* ObjectiveCParserVisitor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEF8403421B3B49F0059188F /* ObjectiveCParserVisitor.cpp */; };
+		CEF8404A21B3B49F0059188F /* ObjectiveCParserBaseListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEF8403521B3B49F0059188F /* ObjectiveCParserBaseListener.cpp */; };
+		CEF8404B21B3B49F0059188F /* ObjectiveCPreprocessorParserListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEF8403621B3B49F0059188F /* ObjectiveCPreprocessorParserListener.cpp */; };
+		CEF8404C21B3B49F0059188F /* ObjectiveCParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEF8403821B3B49F0059188F /* ObjectiveCParser.cpp */; };
+		CEF8404D21B3B49F0059188F /* ObjectiveCPreprocessorParserBaseVisitor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEF8403C21B3B49F0059188F /* ObjectiveCPreprocessorParserBaseVisitor.cpp */; };
+		CEF8404E21B3B49F0059188F /* ObjectiveCPreprocessorParserVisitor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEF8403D21B3B49F0059188F /* ObjectiveCPreprocessorParserVisitor.cpp */; };
+		CEF8404F21B3B49F0059188F /* ObjectiveCLexer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEF8403F21B3B49F0059188F /* ObjectiveCLexer.cpp */; };
+		CEF8405021B3B49F0059188F /* ObjectiveCPreprocessorParserBaseListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEF8404221B3B49F0059188F /* ObjectiveCPreprocessorParserBaseListener.cpp */; };
+		CEF8405121B3B49F0059188F /* ObjectiveCPreprocessorParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEF8404321B3B49F0059188F /* ObjectiveCPreprocessorParser.cpp */; };
+		CEF8405221B3B49F0059188F /* ObjectiveCParserBaseVisitor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEF8404521B3B49F0059188F /* ObjectiveCParserBaseVisitor.cpp */; };
+		CEF8405621B3B5990059188F /* ObjectiveCPreprocessorParser.g4 in Resources */ = {isa = PBXBuildFile; fileRef = CEF8405321B3B5980059188F /* ObjectiveCPreprocessorParser.g4 */; };
+		CEF8405721B3B5990059188F /* ObjectiveCLexer.g4 in Resources */ = {isa = PBXBuildFile; fileRef = CEF8405421B3B5990059188F /* ObjectiveCLexer.g4 */; };
+		CEF8405821B3B5990059188F /* ObjectiveCParser.g4 in Resources */ = {isa = PBXBuildFile; fileRef = CEF8405521B3B5990059188F /* ObjectiveCParser.g4 */; };
+		CEF8405A21B3B8BB0059188F /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27874F1D1CCB7A0700AF1C53 /* CoreFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +110,34 @@
 		37F135681B4AC02800E0CACF /* antlrcpp Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "antlrcpp Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37F1356B1B4AC02800E0CACF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		37F1356C1B4AC02800E0CACF /* antlrcpp_Tests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = antlrcpp_Tests.mm; sourceTree = "<group>"; };
+		CEF8402E21B3B49F0059188F /* ObjectiveCPreprocessorParser.tokens */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ObjectiveCPreprocessorParser.tokens; sourceTree = "<group>"; };
+		CEF8402F21B3B49F0059188F /* ObjectiveCLexer.tokens */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ObjectiveCLexer.tokens; sourceTree = "<group>"; };
+		CEF8403021B3B49F0059188F /* ObjectiveCPreprocessorParserBaseListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveCPreprocessorParserBaseListener.h; sourceTree = "<group>"; };
+		CEF8403121B3B49F0059188F /* ObjectiveCPreprocessorParserBaseVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveCPreprocessorParserBaseVisitor.h; sourceTree = "<group>"; };
+		CEF8403221B3B49F0059188F /* ObjectiveCParserVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveCParserVisitor.h; sourceTree = "<group>"; };
+		CEF8403321B3B49F0059188F /* ObjectiveCParserListener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectiveCParserListener.cpp; sourceTree = "<group>"; };
+		CEF8403421B3B49F0059188F /* ObjectiveCParserVisitor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectiveCParserVisitor.cpp; sourceTree = "<group>"; };
+		CEF8403521B3B49F0059188F /* ObjectiveCParserBaseListener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectiveCParserBaseListener.cpp; sourceTree = "<group>"; };
+		CEF8403621B3B49F0059188F /* ObjectiveCPreprocessorParserListener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectiveCPreprocessorParserListener.cpp; sourceTree = "<group>"; };
+		CEF8403721B3B49F0059188F /* ObjectiveCPreprocessorParserVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveCPreprocessorParserVisitor.h; sourceTree = "<group>"; };
+		CEF8403821B3B49F0059188F /* ObjectiveCParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectiveCParser.cpp; sourceTree = "<group>"; };
+		CEF8403921B3B49F0059188F /* ObjectiveCPreprocessorParserListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveCPreprocessorParserListener.h; sourceTree = "<group>"; };
+		CEF8403A21B3B49F0059188F /* ObjectiveCParserBaseListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveCParserBaseListener.h; sourceTree = "<group>"; };
+		CEF8403B21B3B49F0059188F /* ObjectiveCParserBaseVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveCParserBaseVisitor.h; sourceTree = "<group>"; };
+		CEF8403C21B3B49F0059188F /* ObjectiveCPreprocessorParserBaseVisitor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectiveCPreprocessorParserBaseVisitor.cpp; sourceTree = "<group>"; };
+		CEF8403D21B3B49F0059188F /* ObjectiveCPreprocessorParserVisitor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectiveCPreprocessorParserVisitor.cpp; sourceTree = "<group>"; };
+		CEF8403E21B3B49F0059188F /* ObjectiveCParserListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveCParserListener.h; sourceTree = "<group>"; };
+		CEF8403F21B3B49F0059188F /* ObjectiveCLexer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectiveCLexer.cpp; sourceTree = "<group>"; };
+		CEF8404021B3B49F0059188F /* ObjectiveCParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveCParser.h; sourceTree = "<group>"; };
+		CEF8404121B3B49F0059188F /* ObjectiveCLexer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveCLexer.h; sourceTree = "<group>"; };
+		CEF8404221B3B49F0059188F /* ObjectiveCPreprocessorParserBaseListener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectiveCPreprocessorParserBaseListener.cpp; sourceTree = "<group>"; };
+		CEF8404321B3B49F0059188F /* ObjectiveCPreprocessorParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectiveCPreprocessorParser.cpp; sourceTree = "<group>"; };
+		CEF8404421B3B49F0059188F /* ObjectiveCPreprocessorParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveCPreprocessorParser.h; sourceTree = "<group>"; };
+		CEF8404521B3B49F0059188F /* ObjectiveCParserBaseVisitor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectiveCParserBaseVisitor.cpp; sourceTree = "<group>"; };
+		CEF8404621B3B49F0059188F /* ObjectiveCParser.tokens */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ObjectiveCParser.tokens; sourceTree = "<group>"; };
+		CEF8405321B3B5980059188F /* ObjectiveCPreprocessorParser.g4 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ObjectiveCPreprocessorParser.g4; path = ../../../../../../../common/support/parser/cpp_Ver/ObjectiveCPreprocessorParser.g4; sourceTree = "<group>"; };
+		CEF8405421B3B5990059188F /* ObjectiveCLexer.g4 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ObjectiveCLexer.g4; path = ../../../../../../../common/support/parser/cpp_Ver/ObjectiveCLexer.g4; sourceTree = "<group>"; };
+		CEF8405521B3B5990059188F /* ObjectiveCParser.g4 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ObjectiveCParser.g4; path = ../../../../../../../common/support/parser/cpp_Ver/ObjectiveCParser.g4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +145,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEF8405A21B3B8BB0059188F /* CoreFoundation.framework in Frameworks */,
 				270925AC1CDB427200522D32 /* libantlr4-runtime.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -157,6 +201,10 @@
 		27C66A681C9591280021E494 /* antlr4-cpp-demo */ = {
 			isa = PBXGroup;
 			children = (
+				CEF8405421B3B5990059188F /* ObjectiveCLexer.g4 */,
+				CEF8405521B3B5990059188F /* ObjectiveCParser.g4 */,
+				CEF8405321B3B5980059188F /* ObjectiveCPreprocessorParser.g4 */,
+				CEF8402D21B3B49F0059188F /* generated */,
 				27C66A691C9591280021E494 /* main.cpp */,
 				27C66A731C9592400021E494 /* TLexer.g4 */,
 				27C66A741C9592400021E494 /* TParser.g4 */,
@@ -173,6 +221,7 @@
 				27C66A5C1C958EB50021E494 /* generated */,
 				27874F221CCBB34200AF1C53 /* Linked Frameworks */,
 				37D727AB1867AF1E007B6D10 /* Products */,
+				CEF8405921B3B8BB0059188F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -202,6 +251,46 @@
 				37F1356B1B4AC02800E0CACF /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CEF8402D21B3B49F0059188F /* generated */ = {
+			isa = PBXGroup;
+			children = (
+				CEF8402E21B3B49F0059188F /* ObjectiveCPreprocessorParser.tokens */,
+				CEF8402F21B3B49F0059188F /* ObjectiveCLexer.tokens */,
+				CEF8403021B3B49F0059188F /* ObjectiveCPreprocessorParserBaseListener.h */,
+				CEF8403121B3B49F0059188F /* ObjectiveCPreprocessorParserBaseVisitor.h */,
+				CEF8403221B3B49F0059188F /* ObjectiveCParserVisitor.h */,
+				CEF8403321B3B49F0059188F /* ObjectiveCParserListener.cpp */,
+				CEF8403421B3B49F0059188F /* ObjectiveCParserVisitor.cpp */,
+				CEF8403521B3B49F0059188F /* ObjectiveCParserBaseListener.cpp */,
+				CEF8403621B3B49F0059188F /* ObjectiveCPreprocessorParserListener.cpp */,
+				CEF8403721B3B49F0059188F /* ObjectiveCPreprocessorParserVisitor.h */,
+				CEF8403821B3B49F0059188F /* ObjectiveCParser.cpp */,
+				CEF8403921B3B49F0059188F /* ObjectiveCPreprocessorParserListener.h */,
+				CEF8403A21B3B49F0059188F /* ObjectiveCParserBaseListener.h */,
+				CEF8403B21B3B49F0059188F /* ObjectiveCParserBaseVisitor.h */,
+				CEF8403C21B3B49F0059188F /* ObjectiveCPreprocessorParserBaseVisitor.cpp */,
+				CEF8403D21B3B49F0059188F /* ObjectiveCPreprocessorParserVisitor.cpp */,
+				CEF8403E21B3B49F0059188F /* ObjectiveCParserListener.h */,
+				CEF8403F21B3B49F0059188F /* ObjectiveCLexer.cpp */,
+				CEF8404021B3B49F0059188F /* ObjectiveCParser.h */,
+				CEF8404121B3B49F0059188F /* ObjectiveCLexer.h */,
+				CEF8404221B3B49F0059188F /* ObjectiveCPreprocessorParserBaseListener.cpp */,
+				CEF8404321B3B49F0059188F /* ObjectiveCPreprocessorParser.cpp */,
+				CEF8404421B3B49F0059188F /* ObjectiveCPreprocessorParser.h */,
+				CEF8404521B3B49F0059188F /* ObjectiveCParserBaseVisitor.cpp */,
+				CEF8404621B3B49F0059188F /* ObjectiveCParser.tokens */,
+			);
+			name = generated;
+			path = ../../../../../../../common/support/parser/cpp_Ver/generated;
+			sourceTree = "<group>";
+		};
+		CEF8405921B3B8BB0059188F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,6 +403,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEF8405821B3B5990059188F /* ObjectiveCParser.g4 in Resources */,
+				CEF8405621B3B5990059188F /* ObjectiveCPreprocessorParser.g4 in Resources */,
+				CEF8405721B3B5990059188F /* ObjectiveCLexer.g4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,12 +434,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEF8405021B3B49F0059188F /* ObjectiveCPreprocessorParserBaseListener.cpp in Sources */,
+				CEF8404F21B3B49F0059188F /* ObjectiveCLexer.cpp in Sources */,
+				CEF8404C21B3B49F0059188F /* ObjectiveCParser.cpp in Sources */,
+				CEF8404D21B3B49F0059188F /* ObjectiveCPreprocessorParserBaseVisitor.cpp in Sources */,
 				27C66A6A1C9591280021E494 /* main.cpp in Sources */,
 				27C6E1821C972FFC0079AF06 /* TParserBaseVisitor.cpp in Sources */,
+				CEF8405221B3B49F0059188F /* ObjectiveCParserBaseVisitor.cpp in Sources */,
+				CEF8404B21B3B49F0059188F /* ObjectiveCPreprocessorParserListener.cpp in Sources */,
+				CEF8404921B3B49F0059188F /* ObjectiveCParserVisitor.cpp in Sources */,
+				CEF8404E21B3B49F0059188F /* ObjectiveCPreprocessorParserVisitor.cpp in Sources */,
 				270925B11CDB455B00522D32 /* TLexer.cpp in Sources */,
+				CEF8404A21B3B49F0059188F /* ObjectiveCParserBaseListener.cpp in Sources */,
+				CEF8405121B3B49F0059188F /* ObjectiveCPreprocessorParser.cpp in Sources */,
 				27C6E1831C972FFC0079AF06 /* TParserListener.cpp in Sources */,
 				27C6E1811C972FFC0079AF06 /* TParserBaseListener.cpp in Sources */,
 				27C6E1841C972FFC0079AF06 /* TParserVisitor.cpp in Sources */,
+				CEF8404821B3B49F0059188F /* ObjectiveCParserListener.cpp in Sources */,
 				27C6E1801C972FFC0079AF06 /* TParser.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
