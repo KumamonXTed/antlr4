@@ -921,9 +921,11 @@
 		27DB44D91D0463DB007E790B /* XPathWildcardElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27DB449B1D045537007E790B /* XPathWildcardElement.cpp */; };
 		27DB44DA1D0463DB007E790B /* XPathWildcardElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DB449C1D045537007E790B /* XPathWildcardElement.h */; };
 		27F4A8561D4CEB2A00E067EE /* Any.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F4A8551D4CEB2A00E067EE /* Any.h */; };
+		30043A3B0CD1C35A0B87FDB2 /* libPods-antlr4_static.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D48FEC8ADC269FDF38937252 /* libPods-antlr4_static.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0629D9AB483A88BD1CEF1919 /* Pods-antlr4_static.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-antlr4_static.release.xcconfig"; path = "../../../../../Pods/Target Support Files/Pods-antlr4_static/Pods-antlr4_static.release.xcconfig"; sourceTree = "<group>"; };
 		270C67F01CDB4F1E00116E17 /* antlr4_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = antlr4_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		270C67F21CDB4F1E00116E17 /* antlrcpp_ios.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = antlrcpp_ios.h; sourceTree = "<group>"; wrapsLines = 0; };
 		270C67F41CDB4F1E00116E17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1235,6 +1237,8 @@
 		27F4A8551D4CEB2A00E067EE /* Any.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Any.h; sourceTree = "<group>"; };
 		37C147171B4D5A04008EDDDB /* libantlr4-runtime.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libantlr4-runtime.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37D727AA1867AF1E007B6D10 /* libantlr4-runtime.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = "libantlr4-runtime.dylib"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6061369D43308EBEBB27C38C /* Pods-antlr4_static.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-antlr4_static.debug.xcconfig"; path = "../../../../../Pods/Target Support Files/Pods-antlr4_static/Pods-antlr4_static.debug.xcconfig"; sourceTree = "<group>"; };
+		D48FEC8ADC269FDF38937252 /* libPods-antlr4_static.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-antlr4_static.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1251,6 +1255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				27874F1E1CCB7A0700AF1C53 /* CoreFoundation.framework in Frameworks */,
+				30043A3B0CD1C35A0B87FDB2 /* libPods-antlr4_static.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1658,6 +1663,8 @@
 				27874F221CCBB34200AF1C53 /* Linked Frameworks */,
 				37D727AB1867AF1E007B6D10 /* Products */,
 				276E5C0A1CDB57AA003FF4B4 /* runtime */,
+				C6E744CC4F2A97812C3BD37D /* Pods */,
+				8904E93524F4D6801A307760 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1669,6 +1676,23 @@
 				270C67F01CDB4F1E00116E17 /* antlr4_ios.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		8904E93524F4D6801A307760 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D48FEC8ADC269FDF38937252 /* libPods-antlr4_static.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C6E744CC4F2A97812C3BD37D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6061369D43308EBEBB27C38C /* Pods-antlr4_static.debug.xcconfig */,
+				0629D9AB483A88BD1CEF1919 /* Pods-antlr4_static.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2190,6 +2214,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 37C147211B4D5A04008EDDDB /* Build configuration list for PBXNativeTarget "antlr4_static" */;
 			buildPhases = (
+				712B87B3A76BD7294E94A817 /* [CP] Check Pods Manifest.lock */,
 				37C147131B4D5A04008EDDDB /* Sources */,
 				37C147141B4D5A04008EDDDB /* Frameworks */,
 				37C147151B4D5A04008EDDDB /* Headers */,
@@ -2265,6 +2290,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		712B87B3A76BD7294E94A817 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-antlr4_static-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		270C67EB1CDB4F1E00116E17 /* Sources */ = {
@@ -2797,6 +2847,7 @@
 		};
 		37C1471F1B4D5A04008EDDDB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6061369D43308EBEBB27C38C /* Pods-antlr4_static.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -2814,11 +2865,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "antlr4-runtime";
+				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
 		37C147201B4D5A04008EDDDB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0629D9AB483A88BD1CEF1919 /* Pods-antlr4_static.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -2832,6 +2885,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "antlr4-runtime";
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
